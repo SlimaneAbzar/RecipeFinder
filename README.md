@@ -9,10 +9,10 @@ A full-stack web application that lets users enter ingredients and find recipes 
 ### Backend (Spring Boot)
 
 - Built with **Spring Boot**.
-- Exposes REST API endpoints to:
+- Uses REST API endpoints to:
   - Search recipes by ingredients.
-  - Fetch detailed recipe information by recipe ID.
-- Integrates with the [Spoonacular API](https://spoonacular.com/food-api) for recipe data.
+  - Get recipe information by recipe ID.
+- Integrates with Spoonacular API(https://spoonacular.com/food-api) for recipe data.
 - Sorts recipes by prioritising those with the most provided ingredients and requiring the fewest extra ingredients.
 - Handles CORS for frontend-backend communication.
 

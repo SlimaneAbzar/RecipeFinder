@@ -18,10 +18,10 @@ A full-stack web application that lets users enter ingredients and find recipes 
 
 ### Frontend (Vanilla HTML/CSS/JS)
 
-- Users input comma-separated ingredients.
+- User inputs comma-separated ingredients.
 - Fetches recipe data from the backend API.
 - Displays recipe cards with images and titles.
-- Clicking a recipe card opens a shows ingredients and cooking steps.
+- Clicking a recipe card opens and shows ingredients and cooking steps.
 
 ---
 

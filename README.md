@@ -1,46 +1,42 @@
 # RecipeFinder
 
-A full-stack web application that lets users enter ingredients and find recipes containing them. It uses the Spoonacular API to fetch recipes and recipe details.
+A full-stack web app that lets you type in whatever ingredients you have and find recipes you can make with them. Uses the Spoonacular API to fetch recipes and cooking instructions.
+
+**Live demo:** https://recipefinder-i02w.onrender.com
 
 ---
 
-## Project Overview
+## Features
 
-### Backend (Spring Boot)
-
-- Built with **Spring Boot**.
-- Uses REST API endpoints to:
-  - Search recipes by ingredients.
-  - Get recipe information by recipe ID.
-- Integrates with Spoonacular API(https://spoonacular.com/food-api) for recipe data.
-- Sorts recipes by prioritising those with the most provided ingredients and requiring the fewest extra ingredients.
-- Handles CORS for frontend-backend communication.
-
-### Frontend (Vanilla HTML/CSS/JS)
-
-- User inputs comma-separated ingredients.
-- Fetches recipe data from the backend API.
-- Displays recipe cards with images and titles.
-- Clicking a recipe card opens and shows ingredients and cooking steps.
+- Add ingredients one at a time with Enter, shown as tags you can remove
+- Backspace removes the last ingredient
+- Recipes ranked by fewest missing ingredients so the closest matches appear first
+- Recipe cards show ingredient match ratio and cook time
+- Click a card to see the full ingredient list and step-by-step instructions
+- Backend proxies all API calls so the API key stays on the server
 
 ---
 
+## Tech Stack
 
-## How to Set Up and Run
-
-### Prerequisites
-
-- Java 17+ installed  
-- Maven installed   
-- Spoonacular API key from https://spoonacular.com/food-api
+- **Java 17 / Spring Boot** for the backend REST API
+- **Vanilla HTML/CSS/JS** for the frontend (served as a static file by Spring Boot)
+- **Spoonacular API** for recipe data (complexSearch endpoint with ingredient matching)
+- **Maven** for build and dependency management
+- **Docker** for deployment
 
 ---
 
-### Setup
+## How it works
 
-1. Clone the repository
-2. Configure your API key: In src/main/resources/application.properties add: spoonacular.api.key=(your key)
-3. Build and run Spring Boot: 1 - mvn clean install 2 -  mvn spring-boot:run
-4. Open http://localhost:8080 on your browser.
-5. You're now ready to go
+The frontend sends requests to `/api/recipes?ingredients=chicken,rice` which the Spring Boot backend proxies to the Spoonacular API. This keeps the API key server-side. Results are sorted client-side by fewest missing ingredients. Clicking a recipe card fetches `/api/recipes/{id}` for the full details (ingredients + steps) and shows them in a modal.
 
+---
+
+## Run locally
+
+1. Clone the repo
+2. Get a free API key from https://spoonacular.com/food-api
+3. Set the environment variable: `export SPOONACULAR_API_KEY=your_key_here`
+4. Build and run: `./mvnw spring-boot:run`
+5. Open http://localhost:8080
